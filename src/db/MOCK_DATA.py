@@ -6,3 +6,6 @@ data: list[Books] = [
         {"id":4,"title":"Cory","author":"Falkingham","publisher":"Tabina","published_date":"10/25/2025","page_count":79,"language":"English"},
         {"id":5,"title":"Timmi","author":"Leuren","publisher":"Bethanne","published_date":"2/9/2026","page_count":66,"language":"English"}
         ]
+
+# Tracks the next available id
+next_id: int = 6  # since you already have 5 books
