@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Header
 from typing import Optional
 from pydantic import BaseModel
+from src.index import api
 app = FastAPI()
 
 class BookCreateModel(BaseModel):
@@ -33,3 +34,5 @@ async def get_headers(
     request_headers["Accept"] = accept
     request_headers["Content-Type"] = content_type
     return request_headers
+
+app.include_router(api)
