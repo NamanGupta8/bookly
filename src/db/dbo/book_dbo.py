@@ -41,46 +41,46 @@ def create_table()-> None:
     finally:
         cursor.close()
 
-    def run_query(query: str, params: tuple = ()) -> None:
-        cursor = db.get_cursor()
-        try:
-            cursor.execute(query, params)
-            db.commit()
-        except Exception as e:
-            db.rollback()
-            raise HTTPException(status_code=500, detail=str(e))
-        finally:
-            cursor.close()
+def run_query(query: str, params: tuple = ()) -> None:
+    cursor = db.get_cursor()
+    try:
+        cursor.execute(query, params)
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
 
-    def run_query_returning(query: str, params: tuple = ())-> tuple:
-        cursor = db.get_cursor()
-        try:
-            cursor.execute(query, params)
-            row = cursor.fetchone()
-            db.commit()
-            return row
-        except Exception as e:
-            db.rollback()
-            raise HTTPException(status_code=500, detail=str(e))
+def run_query_returning(query: str, params: tuple = ())-> tuple:
+    cursor = db.get_cursor()
+    try:
+        cursor.execute(query, params)
+        row = cursor.fetchone()
+        db.commit()
+        return row
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
         
-    def fetch_one(query: str, params: tuple = ())-> tuple:
-        cursor = db.get_cursor()
-        try:
-            cursor.execute(query, params)
-            return cursor.fetchone()
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
-        finally:
-            cursor.close()
+def fetch_one(query: str, params: tuple = ())-> tuple:
+    cursor = db.get_cursor()
+    try:
+        cursor.execute(query, params)
+        return cursor.fetchone()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
 
-    def fetch_all(query: str, params: tuple = ())-> list:
-        cursor = db.get_cursor()
-        try:
-            cursor.execute(query, params)
-            return cursor.fetchall()
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
-        finally:
-            cursor.close()
+def fetch_all(query: str, params: tuple = ())-> list:
+    cursor = db.get_cursor()
+    try:
+        cursor.execute(query, params)
+        return cursor.fetchall()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
     
     
