@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.models.model import Books
+from src.models.books_model import Books
 from src.controller.controller import get_all, get_by_id, create_book, update_book, delete_book
 
 books_api = APIRouter()

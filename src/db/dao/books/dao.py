@@ -1,7 +1,7 @@
 from fastapi import HTTPException
-from src.db.dao.index import BookDAO
-from src.db.dbo import book_dbo as dbo
-from src.models.model import Books
+from db.dao.books.index import BookDAO
+from db.dbo.books import dbo as dbo
+from models.books_model import Books
 
 
 # Concrete implementation of BookDAO
