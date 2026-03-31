@@ -1,27 +1,26 @@
-from fastapi import HTTPException
-
+from src.db.dao.book_dao import BookDAOImpl
 from src.models.model import Books
 
-def get_all(books: list[Books]):
-    return books
+# Single instance of BookDAOImpl — Singleton pattern
+# Controller never touches the DB directly, always goes through DAO
+dao = BookDAOImpl()
 
-def get_by_id(books: list[Books], id: int):
-    return list(filter(lambda book: book['id']== id, books))
 
-def create_book(books: list[Books], book: Books) -> Books:
-    books.append(book)
-    return book
+def get_all() -> list[Books]:
+    return dao.get_all()
 
-def update_book(id: int, book:Books):
-    for data in book:
-        if(data['id'] == id):
-            data = book
-            return book
-    return None 
 
-def delete_book(books: list[Books], id: int) -> dict:
-    filtered = list(filter(lambda b: b['id'] == id, books))
-    if not filtered:
-        raise HTTPException(status_code=404, detail=f"Book with id {id} not found")
-    books.remove(filtered[0])
-    return {"message": f"Book with id {id} deleted successfully"}
+def get_by_id(id: int) -> Books:
+    return dao.get_by_id(id)
+
+
+def create_book(book: Books) -> Books:
+    return dao.create(book)
+
+
+def update_book(id: int, book: Books) -> Books:
+    return dao.update(id, book)
+
+
+def delete_book(id: int) -> dict:
+    return dao.delete(id)
