@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-print("DATABASE_URL:", DATABASE_URL)  # ← add this
+# print("DATABASE_URL:", DATABASE_URL)  # ← add this
 class Database:
     _instance = None
     _connection = None
