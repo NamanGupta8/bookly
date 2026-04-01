@@ -1,5 +1,5 @@
-from db.dao.books.dao import BookDAOImpl
-from models.books_model import Books
+from src.db.dao.books.dao import BookDAOImpl
+from src.models.books_model import Books
 
 # Single instance of BookDAOImpl — Singleton pattern
 # Controller never touches the DB directly, always goes through DAO

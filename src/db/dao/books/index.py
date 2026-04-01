@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from models.books_model import Books
+from src.models.books_model import Books
 
 
 # Abstract class — defines WHAT operations exist, not HOW they work
